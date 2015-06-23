@@ -1,0 +1,32 @@
+﻿<Properties StartupItem="Crash-Repro/Crash-Repro.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Castle.Core/Components.DictionaryAdapter/Xml/Internal/Cursors/XPath/CompiledXPath.cs">
+    <Files>
+      <File FileName="Castle.Core/Components.DictionaryAdapter/Xml/Internal/Cursors/XPath/CompiledXPath.cs" Line="93" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Crash-Repro" expanded="True">
+            <Node name="Castle.Core" expanded="True" selected="True">
+              <Node name="Components.DictionaryAdapter" expanded="True">
+                <Node name="Xml" expanded="True">
+                  <Node name="Internal" expanded="True">
+                    <Node name="Cursors" expanded="True">
+                      <Node name="XPath" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+            <Node name="Crash-Repro" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

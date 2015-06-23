@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
-    <RootPath Condition=" '$(RootPath)' == '' ">$(MSBuildProjectDirectory)\..\..</RootPath>
+    <RootPath Condition=" '$(RootPath)' == '' ">$(MSBuildProjectDirectory)\..</RootPath>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Castle</RootNamespace>
     <AssemblyName>Castle.Core</AssemblyName>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\buildscripts\CastleKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'NET40-Debug|AnyCPU' ">
@@ -45,6 +45,7 @@
     <NoWarn>1591</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET35-Debug|AnyCPU'">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -73,6 +74,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SL40-Release|AnyCPU'">
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -88,6 +90,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SL40-Debug|AnyCPU'">
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -103,6 +106,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SL50-Release|AnyCPU'">
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
@@ -118,6 +122,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SL50-Debug|AnyCPU'">
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
@@ -133,16 +138,15 @@
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET45-Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\NET45-Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;PHYSICALASSEMBLY DOTNET DOTNET40 DOTNET45</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>1591</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -161,6 +165,7 @@
     <ErrorReport>prompt</ErrorReport>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup Condition="$(MSBuildTargets)!='Silverlight 5.0' and $(MSBuildTargets)!='Silverlight 4.0'">
     <Reference Include="System.Xml" />
@@ -171,9 +176,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\buildscripts\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Compatibility\SilverlightHacks.cs" />
     <Compile Include="Components.DictionaryAdapter\Util\ListProjectionDebugView.cs" />
     <Compile Include="Components.DictionaryAdapter\Util\ICollectionAdapter.cs" />
@@ -603,6 +605,9 @@
     <Compile Include="Core\Smtp\DefaultSmtpSender.cs" />
     <Compile Include="Core\StringObjectDictionaryAdapter.cs" />
     <Compile Include="SecurityAssemblyInfo.cs" />
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DynamicProxy\DynProxy.snk" />
@@ -611,19 +616,102 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\buildscripts\CastleKey.snk">
-      <Link>CastleKey.snk</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Components.DictionaryAdapter\Xml\Internal\Cursors\XLinq\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" Condition="($(MSBuildTargets) == '') Or ($(MSBuildTargets) == 'CSharp')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v4.0\Microsoft.Silverlight.CSharp.targets" Condition="$(MSBuildTargets) == 'Silverlight 4.0'" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v5.0\Microsoft.Silverlight.CSharp.targets" Condition="$(MSBuildTargets) == 'Silverlight 5.0'" />
   <Import Project="$(RootPath)\Settings.proj" />
-  <Import Project="$(BuildScriptsPath)\Castle.Common.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!--
+    Overridable properties
+  -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">NET40-Debug</Configuration>
+  </PropertyGroup>
+  <!-- .NET 4.5 -->
+  <PropertyGroup Condition="$(Configuration) == 'NET45-Release' or $(Configuration) == 'NET45-Debug'">
+    <BuildConfigKey>NET45</BuildConfigKey>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <!-- .NET 4.0 (default) -->
+  <PropertyGroup Condition="$(Configuration) == 'NET40-Release' or $(Configuration) == 'NET40-Debug'">
+    <BuildConfigKey>NET40</BuildConfigKey>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <!-- .NET 3.5 -->
+  <PropertyGroup Condition="$(Configuration) == 'NET35-Release' or $(Configuration) == 'NET35-Debug'">
+    <BuildConfigKey>NET35</BuildConfigKey>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <!--Silverlight 4.0 runtime-->
+  <PropertyGroup Condition="$(Configuration) == 'SL40-Release' or $(Configuration) == 'SL40-Debug'">
+    <BuildConfigKey>SL40</BuildConfigKey>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <MSBuildTargets>Silverlight 4.0</MSBuildTargets>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <!--Silverlight 5.0 runtime-->
+  <PropertyGroup Condition="$(Configuration) == 'SL50-Release' or $(Configuration) == 'SL50-Debug'">
+    <BuildConfigKey>SL50</BuildConfigKey>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <MSBuildTargets>Silverlight 5.0</MSBuildTargets>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BuildConfigDescription Condition=" '$(BuildConfigDescription)' == '' ">$(TargetFrameworkIdentifier) $(TargetFrameworkVersion)</BuildConfigDescription>
+    <BuildConfigDescription Condition=" '$(TargetFrameworkProfile)' != '' ">$(BuildConfigDescription) Client Profile</BuildConfigDescription>
+  </PropertyGroup>
+  <!-- Project folders -->
+  <PropertyGroup>
+    <TargetFrameworkIdentifier Condition="'$(TargetFrameworkIdentifier)' ==''">.NETFramework</TargetFrameworkIdentifier>
+    <!-- MSBuild 4.0 defines this -->
+    <BuildPath Condition="$(BuildPath)==''">$(RootPath)/build</BuildPath>
+    <OutputPath Condition="'$(OutputPath)' == ''">$(BuildPath)/$(BuildConfigKey)/$(Configuration)/bin/</OutputPath>
+    <BuildScriptsPath Condition="'$(BuildScriptsPath)' ==''">$(RootPath)/buildscripts</BuildScriptsPath>
+    <ToolsPath Condition="'$(ToolsPath)' == ''">$(RootPath)/tools</ToolsPath>
+    <SolutionName Condition="'$(SolutionName)' == ''">$(ProjectName)</SolutionName>
+    <SolutionPath Condition="'$(SolutionPath)' == '' and '$(SolutionName)' != ''">$(RootPath)/$(SolutionName).sln</SolutionPath>
+    <SolutionPath Condition="'$(SolutionPath)' == ''">$(RootPath)/$(ProjectName).sln</SolutionPath>
+    <TestResultsPath Condition="'$(TestResultsPath)' == ''">$(OutputPath)test-results</TestResultsPath>
+  </PropertyGroup>
+  <!-- AssemblyInfo Properties -->
+  <PropertyGroup>
+    <AssemblyInfoFile Condition="'$(AssemblyInfoFile)' == ''">AssemblyInfo.cs</AssemblyInfoFile>
+    <AssemblyTitle Condition="'$(AssemblyTitle)' == ''">$(ProjectName) $(Project_Major).$(Project_Minor).$(Project_Build)$(BuildName) for $(BuildConfigDescription)</AssemblyTitle>
+    <AssemblyProduct Condition="'$(AssemblyProduct)' == ''">$(ProjectName)</AssemblyProduct>
+    <AssemblyDescription Condition="'$(AssemblyDescription)' != ''">$(AssemblyDescription)</AssemblyDescription>
+    <ComVisible Condition="'$(ComVisible)' == ''">false</ComVisible>
+    <CLSCompliant Condition="'$(CLSCompliant)' == ''">true</CLSCompliant>
+    <AllowPartiallyTrustedCallers Condition="'$(AllowPartiallyTrustedCallers)' == ''">false</AllowPartiallyTrustedCallers>
+    <!-- Assembly versioning. These can be overridden to vary file and assembly versions. -->
+    <AssemblyVersion_Major Condition="'$(AssemblyVersion_Major)' == ''">$(Project_Major)</AssemblyVersion_Major>
+    <AssemblyVersion_Minor Condition="'$(AssemblyVersion_Minor)' == ''">$(Project_Minor)</AssemblyVersion_Minor>
+    <AssemblyVersion_Build Condition="'$(AssemblyVersion_Build)' == ''">$(Project_Build)</AssemblyVersion_Build>
+  </PropertyGroup>
+  <!-- Signing Properties-->
+  <PropertyGroup>
+    <SignAssembly Condition="'$(SignAssembly)' == ''">true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(BuildScriptsPath)\CastleKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <!-- Versioning Properties -->
+  <PropertyGroup>
+    <!-- Picks up TeamCity's Build_Number property, or default to zero when not running under TeamCity -->
+    <Build_Number Condition="'$(Build_Number)' == ''">0</Build_Number>
+    <Build_Revision>$(Build_Number)</Build_Revision>
+    <BuildName Condition="'$(BuildName)' == ''">.$(Build_Revision)</BuildName>
+  </PropertyGroup>
+  <!-- Testing Properties -->
+  <PropertyGroup>
+    <TestRunner_Enabled Condition="'$(TestRunner_Enabled)' == ''">true</TestRunner_Enabled>
+    <!-- Controls whether tests are run -->
+    <TestRunner_Timeout Condition="'$(TestRunner_Timeout)' == ''">180000</TestRunner_Timeout>
+    <!-- Specifies the timeout for nunit -->
+    <TestRunner_ContinueOnError Condition="'$(TestRunner_ContinueOnError)' == ''">false</TestRunner_ContinueOnError>
+    <!-- Controls whether to continue the build if tests are failing -->
+  </PropertyGroup>
+  <!-- Run user targets last -->
+  <Import Condition="Exists('$(RootPath)/Common.User.Targets')" Project="$(RootPath)/Common.User.Targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
